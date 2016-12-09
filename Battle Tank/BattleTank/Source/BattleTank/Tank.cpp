@@ -33,6 +33,11 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 
 }
 
+void ATank::SetTurretReference(UTankTurret* TurretToSet)
+{
+	TankAimingComponent->SetTurretReference(TurretToSet);
+}
+
 void ATank::AimAt(FVector HitLocation)
 {
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
