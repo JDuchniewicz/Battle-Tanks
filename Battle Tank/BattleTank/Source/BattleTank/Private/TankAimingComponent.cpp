@@ -11,7 +11,7 @@ UTankAimingComponent::UTankAimingComponent()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true; //TODO Should this ever tick?
+	PrimaryComponentTick.bCanEverTick = false;
 
 	// ...
 }
@@ -55,12 +55,12 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		MoveBarrelTowards(AimDirection);
 		MoveTurretTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("Time: %f Aim soultion found"), Time);
+		//UE_LOG(LogTemp, Warning, TEXT("Time: %f Aim soultion found"), Time);
 	}
 	else
 	{
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("Time: %f No Aim solve found"), Time);
+		//UE_LOG(LogTemp, Warning, TEXT("Time: %f No Aim solve found"), Time);
 	}
 }
 
