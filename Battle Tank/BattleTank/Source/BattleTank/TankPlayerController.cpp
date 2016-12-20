@@ -7,18 +7,6 @@
 void  ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-
-	auto ControlledTank = GetControlledTank();
-	if (!ControlledTank)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController not possesing the tank"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController possesing: %s"), *(ControlledTank->GetName()));
-	}
-
-	UE_LOG(LogTemp, Warning, TEXT("PlayerController Begin Play"));
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
@@ -92,31 +80,3 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector & HitLocation, FVec
 	return false; //Linetrace didn't succeed
 }
 
-
-/*UWorld* World;
-FRotator TurretRotation;
-FVector &StartTrace;
-FVector Direction;
-FVector &EndTrace;
-FHitResult &HitOut;
-
-auto ControlledTank = GetControlledTank();
-auto PlayerController = GetWorld()->GetFirstPlayerController()->GetPawn();
-StartTrace = ControlledTank->GetActorLocation();
-TurretRotation = PlayerController->GetActorRotation();
-Direction = TurretRotation.Vector();
-EndTrace = StartTrace + Direction * 2000;
-
-FCollisionQueryParams TraceParams(FName(TEXT("AimTrace")), true, this);
-TraceParams.bTraceComplex = true;
-
-HitOut = FHitResult(ForceInit);
-
-World->LineTraceSingleByObjectName(
-HitOut,
-StartTrace,
-EndTrace,
-FCollisionObjectQueryParams(ECollisionChannel::),
-TraceParams,
-)
-*/
