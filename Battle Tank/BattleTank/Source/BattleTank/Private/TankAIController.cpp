@@ -4,6 +4,8 @@
 #include "Tank.h"
 #include "TankAIController.h"
 
+//Depends on MovementComponent via pathfinding system
+
 void  ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -15,7 +17,7 @@ void ATankAIController::Tick(float DeltaTime)
 	auto ControlledTank = Cast<ATank>(GetPawn());
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 
-	if (ControlledTank && PlayerTank)
+	if (ensure(PlayerTank))
 	{
 		//Move Towards The player
 		MoveToActor(PlayerTank, AcceptanceRadius);
