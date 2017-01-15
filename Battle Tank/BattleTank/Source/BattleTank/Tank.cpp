@@ -1,8 +1,6 @@
 // Copyright 2016 Jakub Duchniewicz
 
 #include "BattleTank.h"
-#include "TankBarrel.h"
-#include "Projectile.h"
 #include "Tank.h"
 
 
@@ -20,27 +18,3 @@ void ATank::BeginPlay()
 	//UE_LOG(LogTemp, Warning, TEXT("BUMP: C++ BeginPlay Logging"));
 	Super::BeginPlay(); //Needed for BP Begin Play to run!!!
 }
-
-void ATank::Fire()
-{
-	if (!ensure(Barrel)) { return; }
-	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTime;
-	if (isReloaded)
-	{
-		//spawn a projectile at the socket location of the barrela
-		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
-			ProjectileBlueprint,
-			Barrel->GetSocketLocation(FName("Projectile")),
-			Barrel->GetSocketRotation(FName("Projectile"))
-			);
-		Projectile->LaunchProjectile(LaunchSpeed);
-		LastFireTime = FPlatformTime::Seconds();
-	}
-
-
-	
-}
-
-
-
-
