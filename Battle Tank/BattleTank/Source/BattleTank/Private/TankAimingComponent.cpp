@@ -50,7 +50,7 @@ void UTankAimingComponent::Initialise(UTankBarrel* BarrelToSet, UTankTurret* Tur
 
 }
 
-int UTankAimingComponent::ReturnAmmo() const
+int32 UTankAimingComponent::ReturnAmmo() const
 {
 	return RoundsLeft;
 }

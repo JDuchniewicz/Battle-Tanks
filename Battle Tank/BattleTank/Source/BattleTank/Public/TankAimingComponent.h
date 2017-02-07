@@ -34,7 +34,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 		void Fire();
 	UFUNCTION(BlueprintCallable, Category = "Firing")
-		int ReturnAmmo() const;
+		int32 ReturnAmmo() const;
 	void AimAt(FVector HitLocation); 
 
 	EFiringState GetFiringState() const;
@@ -62,6 +62,6 @@ private:
 	double LastFireTime = 0;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-		int RoundsLeft = 0;
+		int32 RoundsLeft = 0;
 
 };
