@@ -11,7 +11,7 @@
 UCLASS(meta = (BlueprintSpawnableComponent))
 class BATTLETANK_API UTankTrack : public UStaticMeshComponent
 {
-	GENERATED_BODY()
+	GENERATED_BODY() //TODO: Need to check and change how we apply physic material only on one track, it makes tank move sluggish on one side
 	
 public:
 	//Sets a throttle between -1 and +1

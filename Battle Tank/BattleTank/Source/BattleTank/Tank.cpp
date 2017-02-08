@@ -4,10 +4,10 @@
 #include "Tank.h"
 
 
+
 // Sets default values
 ATank::ATank()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("BUMP: C++ Constructor Logging"));
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 }
@@ -15,6 +15,25 @@ ATank::ATank()
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("BUMP: C++ BeginPlay Logging"));
 	Super::BeginPlay(); //Needed for BP Begin Play to run!!!
+}
+
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth / (float)StartingHealth;
+}
+
+float ATank::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
+{
+	int32 DamagePoints = FPlatformMath::RoundToInt(Damage);
+	int32 DamageToApply = FMath::Clamp(DamagePoints, 0, CurrentHealth);
+	CurrentHealth -= DamageToApply;
+	UE_LOG(LogTemp, Warning, TEXT("%s Health: %i"), *(GetName()), CurrentHealth);
+	if (CurrentHealth <= 0)
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("Dead"));
+		//Destroy();
+		OnDeath.Broadcast();
+	}
+	return DamageToApply;
 }
