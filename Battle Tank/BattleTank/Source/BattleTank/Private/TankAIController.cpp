@@ -45,7 +45,8 @@ void ATankAIController::SetPawn(APawn * InPawn)
 
 void ATankAIController::OnPossesedTankDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("BROADCASDTING DEATH"));
+	if (!ensure(GetPawn())) { return; }//TODO: remove ensure
+	GetPawn()->DetachFromControllerPendingDestroy();
 }
 
 
